@@ -1,12 +1,19 @@
 import React, { useState } from "react";
+import { connect } from "react-redux";
 
-const Todos = () => {
+const mapStateToProps = (state) => {
+  return {
+    todos: state,
+  }
+}
+
+const Todos = (props) => {
   const [toDo, setTodo] = useState("");
 
   const handleChange = (e) => {
     setTodo(e.target.value);
   };
-  // console.log("to do text", toDo);
+  console.log("props from store", props); //gives us dispatch
 
   return (
     <div className="addToDos">
@@ -16,4 +23,4 @@ const Todos = () => {
   );
 };
 
-export default Todos;
+export default connect(mapStateToProps,null)(Todos);
